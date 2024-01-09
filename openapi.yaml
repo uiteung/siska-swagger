@@ -3,7 +3,7 @@ info:
   title: HRIS V2
   version: 1.0.0
 servers:
-  - url: 'https://hris_backend.ulbi.ac.id/'
+  - url: 'https://hris_backend.ulbi.ac.id'
 paths:
   /api/v2/wage/temp:
     post:
@@ -15,9 +15,13 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                phonenum: 'phonenum'
-                tanggal_tahun: 'YYYYMM'
+              properties:
+                phonenum:
+                  type: string
+                  example: 'phone'
+                tanggal_tahun:
+                  type: string
+                  example: 'YYYYMM'
       responses:
         '200':
           description: Successful response
@@ -33,9 +37,13 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                phonenum: 'phonenum'
-                tanggal_tahun: 'YYYYMM'
+              properties:
+                phonenum:
+                  type: string
+                  example: 'phone'
+                tanggal_tahun:
+                  type: string
+                  example: 'YYYYMM'
       responses:
         '200':
           description: Successful response
@@ -44,16 +52,37 @@ paths:
   /api/v2/rkp/excel:
     post:
       tags:
-        - Recap
+        - Rekap
       summary: Rekap
       requestBody:
         content:
           application/json:
             schema:
               type: object
-              example:
-                phonenum: 'phonenum'
-                tanggal_tahun: 'YYYYMM'
+              properties:
+                phonenum:
+                  type: string
+                  example: 'phone'
+                tanggal_tahun:
+                  type: string
+                  example: 'YYYYMM'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/rkp/raw/{year}:
+    get:
+      tags:
+        - Rekap
+      summary: getLog
+      parameters:
+        - name: year
+          in: path
+          description: Year parameter in the path
+          required: true
+          schema:
+            type: integer  # Adjust the type based on your use case
       responses:
         '200':
           description: Successful response
